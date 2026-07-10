@@ -1,0 +1,73 @@
+:root {
+    --bg: #040914;
+    --panel: rgba(12, 22, 40, .65);
+    --panel2: rgba(20, 35, 60, .75);
+    --neon-blue: #00d4ff;
+    --bg-dark: #050505;
+    --blue: #2a8cff;
+    --cyan: #00e5ff;
+    --green: #00ff9d;
+    --red: #ff5555;
+    --text: #ffffff;
+    --sub: #8fb6d9;
+    --border: rgba(0, 229, 255, .25);
+    --glass: rgba(20, 20, 20, 0.8);
+    --border-color: rgba(0, 212, 255, 0.3);
+    --panel-bg: rgba(10, 15, 30, 0.7);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.gameplay {
+    min-height: 100vh;
+    width: 100%;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: #fff;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h1 {
+    font-size: 40px;
+    letter-spacing: 5px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #08121f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: cyan;
+    border-radius: 10px;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: 1s;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}

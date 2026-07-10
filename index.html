@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="/css/global/reset.css">
+    <link rel="stylesheet" href="/css/global/navbar.css">
+    <link rel="stylesheet" href="/css/global/footer.css">
+    <link rel="stylesheet" href="/css/global/loader.css">
+    <link rel="stylesheet" href="/css/global/notifications.css">
+    <link rel="stylesheet" href="/css/global/particles.css">
+    <link rel="stylesheet" href="/css/home/about.css">
+    <link rel="stylesheet" href="/css/home/hero.css">
+    <link rel="stylesheet" href="/css/home/gallery.css">
+    <link rel="stylesheet" href="/css/home/news.css">
+    <link rel="stylesheet" href="/css/home/faq.css">
+    <link rel="stylesheet" href="/css/home/download.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="icon" href="/assets/icons/favicon.jpg" type="image/png">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="active">ГЛАВНАЯ СТРАНИЦА</a>
+        <ul class="nav-links">
+            <li><a href="/html/characters.html">ПЕРСОНАЖИ</a></li>
+            <li><a href="/html/game-info.html">МЕХАНИКИ</a></li>
+            <li><a href="/html/requirements.html">СИСТЕМНЫЕ ТРЕБОВАНИЯ</a></li>
+            <li><a href="/html/viewer.html">КИНОТЕАТР</a></li>
+            <li><a href="/html/stronger.html">ТРЕНИРОВКА</a></li>
+        </ul>
+    </nav>
+    <div id="particles"></div>
+    <section class="hero-module">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="/assets/video/hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>SOLO LEVELING: ARISE</h1>
+            <div class="cta-group">
+                <button class="btn-primary" id="play-btn">
+                    ИГРАТЬ
+                </button>
+                <a href="https://www.youtube.com/watch?v=YvGSK8mIlt8" class="btn-secondary">
+                    СМОТРЕТЬ ТРЕЙЛЕР
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="about-game hidden">
+        <div class="about-content">
+            <div class="about-text">
+                <span class="section-tag">ОБ ИГРЕ</span>
+                <h2>Станьте сильнейшим охотником</h2>
+
+                <p>
+                    <strong>Solo Leveling: ARISE</strong> — динамичная Action RPG,
+                    созданная по мотивам всемирно известного вебтуна Solo Leveling.
+                    Пройдите путь Сон Джин Ву от слабейшего охотника E-ранга до
+                    сильнейшего монарха теней.
+                </p>
+
+                <p>
+                    Исследуйте опасные подземелья, сражайтесь с могущественными
+                    боссами, собирайте легендарное оружие и создавайте собственную
+                    армию теней, способную уничтожить любого противника.
+                </p>
+            </div>
+
+            <div class="about-image hidden">
+                <img src="/assets/screens/main/main.jpg" alt="Solo Leveling">
+            </div>
+        </div>
+    </section>
+    <section class="gallery-section hidden">
+        <h2>СКРИНШОТЫ</h2>
+        <div class="slider">
+            <button class="slider-btn prev">&#10094;</button>
+            <div class="slider-track">
+                <img src="/assets/screens/1.jpg">
+                <img src="/assets/screens/2.jpg">
+                <img src="/assets/screens/3.jpg">
+                <img src="/assets/screens/4.jpg">
+                <img src="/assets/screens/5.jpg">
+                <img src="/assets/screens/6.jpg">
+                <img src="/assets/screens/7.jpg">
+                <img src="/assets/screens/8.jpg">
+                <img src="/assets/screens/9.jpg">
+                <img src="/assets/screens/10.jpg">
+            </div>
+            <button class="slider-btn next">&#10095;</button>
+        </div>
+    </section>
+    <div class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-img">
+    </div>
+    <section class="news-section hidden">
+        <h2>ПОСЛЕДНИЕ НОВОСТИ</h2>
+        <div class="news-grid">
+            <article class="news-card">
+                <span class="date">28 Июня 2026</span>
+                <h3>Обновление 2.3</h3>
+                <p>
+                    Добавлен новый охотник SSR, переработан баланс
+                    и появились новые задания.
+                </p>
+            </article>
+            <article class="news-card">
+                <span class="date">16 Июня 2026</span>
+                <h3>Летнее событие</h3>
+                <p>
+                    Выполняйте ежедневные миссии и получайте эксклюзивные награды.
+                </p>
+            </article>
+
+            <article class="news-card">
+                <span class="date">1 Июня 2026</span>
+                <h3>Новый рейд</h3>
+                <p>
+                    Испытайте силы против нового босса и получите легендарную экипировку.
+                </p>
+            </article>
+            <article class="news-card">
+                <span class="date">24 Июня 2026</span>
+                <h3>Новый SSR-охотник «Лю Цзыган»</h3>
+                <p>
+                    В игру добавлен Национальный охотник Лю Цзыган. Игрокам доступны
+                    новые сюжетные задания, эксклюзивные события призыва и специальный
+                    набор наград за вход в игру.
+                </p>
+            </article>
+
+            <article class="news-card">
+                <span class="date">11 Июня 2026</span>
+                <h3>Летний фестиваль охотников</h3>
+                <p>
+                    Стартовало сезонное событие Summer Hunter Festival. Выполняйте
+                    ежедневные миссии, собирайте специальные жетоны и обменивайте их
+                    на SSR-оружие, артефакты и редкие материалы для усиления персонажей.
+                </p>
+            </article>
+
+            <article class="news-card">
+                <span class="date">29 Мая 2026</span>
+                <h3>Новый режим «Proof of the Strong»</h3>
+                <p>
+                    Добавлен новый высокоуровневый режим испытаний, в котором игрокам
+                    предстоит сразиться с усиленными боссами. За прохождение можно
+                    получить легендарное снаряжение и уникальные титулы.
+                </p>
+            </article>
+        </div>
+    </section>
+    <section class="faq-section hidden" id="faq">
+        <h2>ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h2>
+        <p class="faq-subtitle">
+            Ответы на самые популярные вопросы о Solo Leveling: ARISE.
+        </p>
+        <div class="faq">
+            <div class="faq-column">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Можно ли играть бесплатно?
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Да. <strong>Solo Leveling: ARISE</strong> распространяется по модели
+                            Free-to-Play, поэтому скачать и начать играть можно совершенно бесплатно.
+                        </p>
+                        <p>
+                            В игре присутствуют внутриигровые покупки, однако большинство контента,
+                            включая сюжет, развитие персонажей, подземелья и события, доступно без
+                            обязательных вложений.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        На каких устройствах доступна игра?
+                    </button>
+
+                    <div class="faq-answer">
+                        <p>
+                            Игра доступна на ПК, Android и iOS.
+                        </p>
+                        <p>
+                            Вы можете использовать одну учетную запись и продолжить прохождение
+                            на любом поддерживаемом устройстве, если выполнен вход в один аккаунт.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Нужен ли постоянный доступ к интернету?
+                    </button>
+
+                    <div class="faq-answer">
+                        <p>
+                            Да. Для запуска игры и большинства игровых режимов требуется
+                            стабильное интернет-соединение.
+                        </p>
+
+                        <p>
+                            Это необходимо для синхронизации игрового прогресса, участия
+                            в событиях, получения наград и обновлений.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Есть ли русский язык?
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Да. Игра поддерживает русский интерфейс и субтитры.
+                        </p>
+                        <p>
+                            Язык можно изменить в настройках игры без необходимости
+                            переустанавливать клиент.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Можно ли играть вместе с друзьями?
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Основной сюжет ориентирован на одиночное прохождение,
+                            однако игра регулярно предлагает события, рейтинговые режимы
+                            и соревновательный контент, где можно сравнить свои результаты
+                            с другими игроками.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-column">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Кто такой Сон Джин Ву?
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Сон Джин Ву — главный герой вселенной Solo Leveling.
+                            В начале истории он считается слабейшим охотником E-ранга,
+                            однако после получения загадочной Системы становится единственным,
+                            кто способен бесконечно развивать свои способности.
+                        </p>
+                        <p>
+                            Именно его путь от самого слабого до сильнейшего Монарха Теней
+                            лежит в основе сюжета игры.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Что такое Армия Теней?
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Побеждая сильных противников, Сон Джин Ву способен превращать их
+                            в своих теневых солдат.
+                        </p>
+                        <p>
+                            Каждый призванный воин обладает собственными характеристиками
+                            и может участвовать в боях, усиливая вашу команду.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Как быстро стать сильнее?
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Регулярно проходите сюжетные главы, улучшайте оружие,
+                            развивайте навыки, усиливайте Армию Теней и выполняйте ежедневные задания.
+                        </p>
+                        <p>
+                            Не забывайте участвовать во временных событиях —
+                            они позволяют получить редкие материалы и ценные награды,
+                            значительно ускоряющие развитие аккаунта.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Как часто выходят обновления?
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Разработчики регулярно выпускают обновления, добавляя новых
+                            охотников, игровые режимы, сюжетные главы, события и улучшения
+                            игрового баланса.
+                        </p>
+                        <p>
+                            Следить за всеми изменениями можно в разделе новостей
+                            или на официальных страницах проекта.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item">
+
+                    <button class="faq-question">
+                        Как получить новых охотников и оружие?
+                    </button>
+
+                    <div class="faq-answer">
+                        <p>
+                            Новых охотников и оружие можно получить с помощью системы призыва
+                            (Gacha), участвуя в специальных событиях, выполняя сюжетные главы,
+                            ежедневные задания и сезонные активности.
+                        </p>
+
+                        <p>
+                            Самые редкие персонажи и оружие имеют высокий ранг (SSR) и появляются
+                            в ограниченных баннерах. Во время специальных событий вероятность их
+                            получения увеличивается, поэтому рекомендуется сохранять ресурсы и
+                            использовать их именно в период действия таких баннеров.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer hidden">
+        <div class="footer-line"></div>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>SOLO LEVELING</h2>
+                <p>Rise From The Weakest Hunter</p>
+                <div class="brand-glow"></div>
+            </div>
+            <div class="footer-column">
+                <h3>📍 Навигация</h3>
+                <a href="index.html">Главная</a>
+                <a href="/html/characters.html">Персонажи</a>
+                <a href="html/game-info.html">Механики</a>
+                <a href="/html/requirements.html">Системные требования</a>
+                <a href="/html/viewer.html">Кинотеатр</a>
+            </div>
+            <div class="footer-column">
+                <h3>⚡ Полезные ссылки</h3>
+                <a href="https://forum.netmarble.com/slv_en">Форум</a>
+                <a href="https://slvshop.netmarble.com/ru/">Интернет-магазин</a>
+                <a href="https://com-x.life/9117-podnyatie-urovnya-v-odinochku-h3s2.html">Манга</a>
+                <a href="#" id="download-footer-btn">Скачать игру</a>
+                <a href="/html/stronger.html">Тренировка</a>
+            </div>
+            <div class="footer-column">
+                <h3>🌐 Сообщество</h3>
+                <a href="https://discord.com/invite/sololevelingarise-gl">Discord</a>
+                <a href="https://www.youtube.com/@SoloLevelingARISE_GL">YouTube</a>
+                <a href="https://www.instagram.com/sololeveling.arise">Instagram</a>
+                <a href="https://x.com/Sololv_ARISE_GL">Twitter</a>
+                <a href="https://www.facebook.com/SoloLevelingARISE.EN/">Facebook</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 SOLO LEVELING FAN PROJECT <br> Made by Bogdan</span>
+            <div class="system-status">
+                <span class="status-dot"></span>
+                SYSTEM STATUS : ONLINE
+            </div>
+        </div>
+    </footer>
+    <div id="download-modal">
+        <div class="modal-content">
+            <button class="close-btn2">&times;</button>
+            <h2>Скачать игру</h2>
+            <h3>MOBILE</h3>
+            <div class="store-links">
+                <a href="https://apps.apple.com/us/app/solo-leveling-arise/id1662742277"><img class="icon-download"
+                        src="/assets/download-icons/app-store.svg" alt=""></a>
+                <a href="https://play.google.com/store/apps/details?id=com.netmarble.sololv"><img class="icon-download"
+                        src="/assets/download-icons/google-play.svg" alt=""></a>
+                <a href="https://store.epicgames.com/p/solo-levelingarise-android-85219e"><img class="icon-download"
+                        src="/assets/download-icons/epic-games.svg" alt=""></a>
+            </div>
+
+            <h3>PC</h3>
+            <div class="store-links">
+                <a href="https://sololeveling.netmarble.com/ru/pcplay"><img src="/assets/download-icons/version-pc.svg"
+                        alt="" class="icon-download"> </a>
+                <a href="https://play.google.com/store/apps/details?id=com.netmarble.sololv"><img class="icon-download"
+                        src="/assets/download-icons/google-play-pc.svg" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <div id="notifications"></div>
+    <div id="loader">
+        <div class="loader-circle"></div>
+        <span>INITIALIZING SYSTEM...</span>
+    </div>
+    <script type="module" src="/js/main.js"></script>
+    <script src="/js/loader.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/particles.js"></script>
+</body>
+
+</html>

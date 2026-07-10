@@ -1,0 +1,79 @@
+.episodes-grid {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    gap: 10px;
+}
+
+.episodes-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.episodes-scroll-container {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    position: absolute;
+    right: 8%;
+    top: 22%;
+    max-height: 430px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.episodes-scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.episodes-scroll-container::-webkit-scrollbar-thumb {
+    background: #00d4ff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.nav-arrows {
+    display: flex;
+    height: 55px;
+}
+
+.arrow-btn {
+    background: rgba(0, 212, 255, 0.2);
+    border: 1px solid #00d4ff;
+    color: #00d4ff;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: 0.3s;
+    width: 90px;
+}
+
+.title {
+    text-align: center;
+    flex: 1;
+}
+
+h2 {
+    color: var(--neon-blue);
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.fa-arrow-down {
+    font-size: 40px;
+    fill: #00d4ff;
+}
+
+#left-arrow {
+    transform: rotate(90deg);
+}
+
+#right-arrow {
+    transform: rotate(-90deg);
+}
+
+.arrow-btn:hover {
+    background: #00d4ff;
+    color: #000;
+}

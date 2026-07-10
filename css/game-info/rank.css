@@ -1,0 +1,76 @@
+.rank {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ranks {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.rank span:hover {
+    transform: scale(1.15);
+    background: cyan;
+    color: black;
+}
+
+.rank {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #c8e9ff;
+    border: 3px solid rgba(255, 255, 255, .15);
+    border-left: none;
+    border-right: none;
+    cursor: pointer;
+}
+
+.rank.active {
+    color: #9cf8ff;
+    border-color: #6ff8ff;
+    box-shadow:
+        0 0 10px rgba(0, 255, 255, .4);
+}
+
+.rank:not(.active):hover {
+    text-shadow: 0 0 5px var(--cyan);
+    border: 1px solid var(--cyan);
+    border-left: none;
+    border-right: none;
+}
+
+.arrow {
+    width: 40px;
+    height: 90px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.arrow span {
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.arrow span:hover {
+    text-shadow: 0 0 15px var(--neon-blue);
+}
+
+.percent {
+    display: flex;
+    justify-content: space-between;
+    color: #d6f6ff;
+    font-size: 26px;
+    font-weight: 700;
+}

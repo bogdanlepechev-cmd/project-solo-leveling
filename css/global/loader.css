@@ -1,0 +1,20 @@
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #02060f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    z-index: 99999;
+}
+
+.loader-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, .1);
+    border-top-color: cyan;
+    animation: spinLoader 1s linear infinite;
+}

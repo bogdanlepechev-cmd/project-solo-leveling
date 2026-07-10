@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global/loader.css">
+    <link rel="stylesheet" href="/css/global/navbar.css">
+    <link rel="stylesheet" href="/css/global/notifications.css">
+    <link rel="stylesheet" href="/css/global/particles.css">
+    <link rel="stylesheet" href="/css/global/reset.css">
+    <link rel="stylesheet" href="/css/viewer/player.css">
+    <link rel="stylesheet" href="/css/viewer/episodes.css">
+    <link rel="stylesheet" href="/css/viewer/ep-btn.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Просмотр</title>
+    <link rel="icon" href="/assets/icons/favicon.jpg" type="image/png">
+</head>
+
+<body>
+    <div id="particles"></div>
+    <nav class="navbar">
+        <a href="../index.html">ГЛАВНАЯ СТРАНИЦА</a>
+        <ul class="nav-links">
+            <li><a href="characters.html">ПЕРСОНАЖИ</a></li>
+            <li><a href="game-info.html">МЕХАНИКИ</a></li>
+            <li><a href="requirements.html">СИСТЕМНЫЕ ТРЕБОВАНИЯ</a></li>
+            <li><a href="viewer.html" class="active">КИНОТЕАТР</a></li>
+            <li><a href="stronger.html">ТРЕНИРОВКА</a></li>
+        </ul>
+    </nav>
+    <main class="anime-viewer">
+        <div class="video-container2">
+            <iframe id="main-player" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="episodes-wrapper">
+            <div class="nav-arrows">
+                <button id="prev-ep" class="arrow-btn"><i id="left-arrow" class="fa-solid fa-arrow-down"></i></button>
+                <h2 id="series-title" style="border: none;" class="title"></h2>
+                <button id="next-ep" class="arrow-btn"><i id="right-arrow" class="fa-solid fa-arrow-down"></i></button>
+            </div>
+            <div class="season-selector">
+                <label for="season-select"></label>
+                <select id="season-select">
+                    <option value="1">Сезон 1</option>
+                    <option value="2">Сезон 2</option>
+                </select>
+            </div>
+            <div class="episodes-scroll-container">
+                <div class="episodes-grid">
+                    <button class="ep-btn active">1 серия</button>
+                    <button class="ep-btn">2 серия</button>
+                    <button class="ep-btn">3 серия</button>
+                    <button class="ep-btn">4 серия</button>
+                    <button class="ep-btn">5 серия</button>
+                    <button class="ep-btn">6 серия</button>
+                    <button class="ep-btn">7 серия</button>
+                    <button class="ep-btn">8 серия</button>
+                    <button class="ep-btn">9 серия</button>
+                    <button class="ep-btn">10 серия</button>
+                    <button class="ep-btn">11 серия</button>
+                    <button class="ep-btn">12 серия</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="notifications"></div>
+    <div id="loader">
+        <div class="loader-circle"></div>
+        <span>INITIALIZING SYSTEM...</span>
+    </div>
+    <script type="module" src="/js/main.js"></script>
+    <script src="/js/particles.js"></script>
+    <script src="/js/loader.js"></script>
+    <script src="/js/gallery-video.js"></script>
+</body>
+
+</html>

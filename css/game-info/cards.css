@@ -1,0 +1,22 @@
+.card,
+.video-card,
+.skills-card,
+.stats-card {
+    position: relative;
+    background: var(--panel);
+    border:
+        1px solid var(--border);
+    border-radius: 22px;
+    backdrop-filter: blur(18px);
+    overflow: hidden;
+    padding: 24px;
+    transition: .35s;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}

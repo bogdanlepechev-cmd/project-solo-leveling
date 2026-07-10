@@ -1,0 +1,119 @@
+
+.combat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.combat-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #d6f6ff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow:
+        0 0 15px rgba(120, 220, 255, .4);
+}
+
+.combat-status {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 35px;
+    border: 2px solid rgba(0, 220, 255, .4);
+    clip-path: polygon(12% 0,
+            88% 0,
+            100% 50%,
+            88% 100%,
+            12% 100%,
+            0 50%);
+    color: #83f6ff;
+    font-size: 30px;
+    font-weight: 700;
+    text-shadow: 0 0 10px cyan;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 2px;
+    color: #00ff88;
+}
+
+.status-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #00ff7b;
+    box-shadow:
+        0 0 15px #00ff7b,
+        0 0 35px #00ff7b;
+}
+
+.combat-body {
+    display: grid;
+    grid-template-columns:
+        260px 1fr;
+    gap: 45px;
+}
+
+.weapon-panel {
+    height: 650px;
+}
+
+.weapon-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 22px;
+    border: 2px solid rgba(120, 220, 255, .18);
+    background:
+        linear-gradient(180deg,
+            rgba(30, 60, 100, .3),
+            rgba(5, 10, 20, .2));
+    overflow: hidden;
+}
+
+.weapon-frame img {
+    width: 100%;
+    height: 650px;
+}
+
+.combat-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.description {
+    font-size: 32px;
+    line-height: 1.1;
+    font-weight: 600;
+    color: #b8eaff;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 15px rgba(100, 220, 255, .15);
+}
+
+.rank-widget {
+    position: relative;
+    height: 420px;
+    border-radius: 25px;
+    border: 2px solid rgba(120, 220, 255, .18);
+    background:
+        linear-gradient(180deg,
+            rgba(15, 35, 55, .7),
+            rgba(10, 15, 30, .9));
+    padding: 25px;
+}
+
+.rank-gauge img {
+    width: 100%;
+    height: 200px;
+    transition:
+        opacity .25s,
+        transform .25s;
+    object-fit: cover;
+}

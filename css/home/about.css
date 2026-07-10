@@ -1,0 +1,43 @@
+.about-game {
+    padding: 90px 8%;
+    background: #0808083d;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 80px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.section-tag {
+    color: #00d9ff;
+    font-size: 20px;
+    letter-spacing: 3px;
+}
+
+.about-text h2 {
+    margin: 15px 0 25px;
+    font-size: 40px;
+}
+
+.about-text p {
+    color: #cfcfcf;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(0, 212, 255, .25);
+}

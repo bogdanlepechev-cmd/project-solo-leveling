@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Механики</title>
+    <link rel="stylesheet" href="/css/global/navbar.css">
+    <link rel="stylesheet" href="/css/global/footer.css">
+    <link rel="stylesheet" href="/css/global/loader.css">
+    <link rel="stylesheet" href="/css/global/notifications.css">
+    <link rel="stylesheet" href="/css/global/particles.css">
+    <link rel="stylesheet" href="/css/game-info/body.css">
+    <link rel="stylesheet" href="/css/game-info/container.css">
+    <link rel="stylesheet" href="/css/game-info/cards.css">
+    <link rel="stylesheet" href="/css/game-info/rank.css">
+    <link rel="stylesheet" href="/css/game-info/shadow.css">
+    <link rel="stylesheet" href="/css/game-info/video.css">
+    <link rel="stylesheet" href="/css/game-info/stats-card.css">
+    <link rel="stylesheet" href="/css/game-info/skill.css">
+    <link rel="stylesheet" href="/css/game-info/combat-title.css">
+    <link rel="stylesheet" href="/css/animations.css">
+    <link rel="icon" href="/assets/icons/favicon.jpg" type="image/png">
+</head>
+
+<body>
+    <canvas id="stars"></canvas>
+    <div id="particles"></div>
+    <nav class="navbar">
+        <a href="../index.html">ГЛАВНАЯ СТРАНИЦА</a>
+        <ul class="nav-links">
+            <li><a href="/html/characters.html">ПЕРСОНАЖИ</a></li>
+            <li><a href="/html/game-info.html" class="active">МЕХАНИКИ</a></li>
+            <li><a href="/html/requirements.html">СИСТЕМНЫЕ ТРЕБОВАНИЯ</a></li>
+            <li><a href="/html/viewer.html">КИНОТЕАТР</a></li>
+            <li><a href="/html/stronger.html">ТРЕНИРОВКА</a></li>
+        </ul>
+    </nav>
+    <main class="container">
+        <header class="header">
+            <div class="logo left"><img class="logo" src="/assets/icons/logo.webp" alt=""></div>
+            <div class="title">
+                <h1>Игровая система</h1>
+            </div>
+            <div class="logo right"><img class="logo" src="/assets/icons/logo.webp" alt=""></div>
+        </header>
+        <div class="hud-clock">
+            <span id="clock"></span>
+        </div>
+        <section id="home" class="page">
+            <section class="top-grid">
+                <div class="combat card">
+                    <div class="combat-header">
+                        <h2 class="combat-title">
+                            БОЕВАЯ СИСТЕМА
+                        </h2>
+                        <div class="combat-status">
+                            ONLINE
+                            <span class="status-dot"></span>
+                        </div>
+                    </div>
+                    <div class="combat-body">
+                        <div class="weapon-panel">
+                            <div class="weapon-frame">
+                                <img src="/assets//swords/sword-solo.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="combat-info">
+                            <div class="description">
+                                ДИНАМИЧНЫЙ БОЙ:
+                                АТАКА,
+                                УКЛОНЕНИЕ,
+                                ПАРИРОВАНИЕ.
+                                <br><br>
+                                РАНГ (E–S)
+                                УЛУЧШАЕТ АНИМАЦИИ
+                                И СКОРОСТЬ КРИТОВ.
+                            </div>
+                            <div class="rank-widget">
+                                <div class="percent">
+                                    <span>15%</span>
+                                    <span>78%</span>
+                                </div>
+                                <div class="rank-gauge">
+                                    <img id="swordImage" src="/assets/swords/sword_b.png" alt="">
+                                </div>
+                                <div class="rank-bar">
+                                    <div class="energy-bar">
+                                        <div class="energy-fill"></div>
+                                    </div>
+                                </div>
+                                <div class="ranks">
+                                    <div class="arrow left">
+                                        <span onclick="navigate(-1)">&#9664;</span>
+                                    </div>
+                                    <div class="rank e">E</div>
+                                    <div class="rank d">D</div>
+                                    <div class="rank c">C</div>
+                                    <div class="rank b active">B</div>
+                                    <div class="rank a">A</div>
+                                    <div class="rank s">S</div>
+                                    <div class="arrow right" onclick="navigate(1)">
+                                        <span>&#9654;</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h2>АРМИЯ ТЕНЕЙ</h2>
+                        <span class="status">8 / 100</span>
+                    </div>
+                    <div class="shadow-center" id="main-display">
+                        <img src="" id="big-chibi-img" alt="Выбранная тень">
+                    </div>
+                    <div class="shadow-grid" id="shadow-grid"></div>
+                </div>
+            </section>
+            <div class="video-card full-width">
+                <div class="card-header">
+                    <h2>БОЕВАЯ ЗАПИСЬ</h2>
+                    <span class="status online">
+                        LIVE
+                    </span>
+                </div>
+                <div class="video-frame">
+                    <video autoplay muted loop playsinline>
+                        <source src="/assets/video/solo-leveling2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
+                </div>
+            </div>
+            <section class="bottom-grid">
+                <div class="skills-card">
+                    <div class="card-header">
+                        <h2>ОБЗОР НАВЫКОВ</h2>
+                        <span class="status">4 / 4</span>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="video-preview">
+                            <video src="/assets/video/arise.mp4" muted loop playsinline></video>
+                            <div class="play-btn">▶</div>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Восстание Теней</h3>
+                            <p>Призывает павших врагов в качестве теневых солдат, подчиняющихся вашей воле.</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="video-preview">
+                            <video src="/assets/video/exchange.mp4" muted loop playsinline></video>
+                            <div class="play-btn">▶</div>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Теневой шаг</h3>
+                            <p>Позволяет мгновенно перемещаться в тень любого ранее созданного теневого солдата.</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="video-preview">
+                            <video src="/assets/video/bloodlust.mp4" muted loop playsinline></video>
+                            <div class="play-btn">▶</div>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Жажда крови</h3>
+                            <p>Выпускает подавляющую ауру, которая снижает характеристики всех врагов в радиусе
+                                действия.</p>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="video-preview">
+                            <video src="/assets/video/rule.mp4" muted loop playsinline></video>
+                            <div class="play-btn">▶</div>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Власть правителя</h3>
+                            <p>Телекинетическая способность управлять объектами и врагами без физического контакта.</p>
+                        </div>
+                    </div>
+                </div>
+                <section class="stats-card">
+                    <h2 class="page-title">ПАРАМЕТРЫ ПЕРСОНАЖА</h2>
+                    <section class="stats-container">
+                        <div class="stat-ring-wrapper">
+                            <div class="radar-center">
+                                <svg viewBox="0 0 200 200" class="radar-chart">
+                                    <polygon points="100,20 170,60 170,140 100,180 30,140 30,60" fill="none"
+                                        stroke="#4a90e2" stroke-width="2" />
+                                    <polygon points="100,50 145,75 145,125 100,150 55,125 55,75" fill="none"
+                                        stroke="#4a90e2" stroke-width="2" opacity="0.5" />
+                                    <text x="100" y="105" text-anchor="middle" fill="#fff" font-size="20"
+                                        font-weight="bold">
+                                        LVL 1
+                                    </text>
+                                </svg>
+                            </div>
+                            <div class="stat-hex strength ring-item" data-title="Сила">
+                                <img class="icon" src="/assets/icons/sword.svg" alt="Сила">
+                                <span class="stat-label">Сила</span>
+                            </div>
+                            <div class="stat-hex vitality ring-item" data-title="Живучесть">
+                                <img class="icon" src="/assets/icons/vitality.svg" alt="Живучесть">
+                                <span class="stat-label">Живучесть</span>
+                            </div>
+                            <div class="stat-hex intelligence ring-item" data-title="Интеллект">
+                                <img class="icon" src="/assets/icons/intelligence.svg" alt="Интеллект">
+                                <span class="stat-label">Интеллект</span>
+                            </div>
+                            <div class="stat-hex perception ring-item" data-title="Восприятие">
+                                <img class="icon" src="/assets/icons/perception.svg" alt="Восприятие">
+                                <span class="stat-label">Восприятие</span>
+                            </div>
+                            <div class="stat-hex agility ring-item" data-title="Ловкость">
+                                <img class="icon" src="/assets/icons/agility.svg" alt="Ловкость">
+                                <span class="stat-label">Ловкость</span>
+                            </div>
+                            <div class="stat-hex mentality ring-item" data-title="Дух">
+                                <img class="icon" src="/assets/icons/mentality.svg" alt="Дух">
+                                <span class="stat-label">Дух</span>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </section>
+        </section>
+        <div id="notifications"></div>
+        <div id="loader">
+            <div class="loader-circle"></div>
+            <span>INITIALIZING SYSTEM...</span>
+        </div>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>SOLO LEVELING</h2>
+                    <p>Rise From The Weakest Hunter</p>
+                    <div class="brand-glow"></div>
+                </div>
+                <div class="footer-column">
+                    <h3>📍 Навигация</h3>
+                    <a href="../index.html">Главная</a>
+                    <a href="/html/characters.html">Персонажи</a>
+                    <a href="html/game-info.html">Механики</a>
+                    <a href="/html/requirements.html">Системные требования</a>
+                    <a href="/html/viewer.html">Кинотеатр</a>
+                </div>
+                <div class="footer-column">
+                    <h3>⚡ Полезные ссылки</h3>
+                    <a href="https://forum.netmarble.com/slv_en">Форум</a>
+                    <a href="https://slvshop.netmarble.com/ru/">Интернет-магазин</a>
+                    <a href="https://com-x.life/9117-podnyatie-urovnya-v-odinochku-h3s2.html">Манга</a>
+                    <a href="../index.html">Скачать игру</a>
+                    <a href="/html/stronger.html">Тренировка</a>
+                </div>
+                <div class="footer-column">
+                    <h3>🌐 Сообщество</h3>
+                    <a href="https://discord.com/invite/sololevelingarise-gl">Discord</a>
+                    <a href="https://www.youtube.com/@SoloLevelingARISE_GL">YouTube</a>
+                    <a href="https://www.instagram.com/sololeveling.arise">Instagram</a>
+                    <a href="https://x.com/Sololv_ARISE_GL">Twitter</a>
+                    <a href="https://www.facebook.com/SoloLevelingARISE.EN/">Facebook</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 SOLO LEVELING FAN PROJECT <br> Made by Bogdan</span>
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    SYSTEM STATUS : ONLINE
+                </div>
+            </div>
+        </footer>
+    </main>
+    <div id="video-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-container video-wrapper">
+                <video id="modal-video">
+                    <source src="" type="video/mp4">
+                </video>
+                <div class="custom-controls">
+                    <button class="btn-play">
+                        <svg class="play-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
+                            style="display:none;">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                        </svg>
+                    </button>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="stat-modal" class="modal-overlay3">
+    <div class="modal-window">
+        <button class="close-btn">&times;</button>
+        <h2 id="modal-title">Название</h2>
+        <div class="modal-body">
+            <h4 class="section-header">Основное влияние</h4>
+            <p id="modal-impact"></p>
+            <h4 class="section-header">Детали</h4>
+            <ul id="modal-details" class="details-list"></ul>
+        </div>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/main2.js"></script>
+    <script src="/js/particles.js"></script>
+    <script src="/js/loader.js"></script>
+    <script src="/js/navbar.js"></script>
+</body>
+
+</html>

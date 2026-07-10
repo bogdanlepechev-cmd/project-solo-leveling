@@ -1,0 +1,19 @@
+#particles {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: cyan;
+    opacity: .5;
+    box-shadow: 0 0 12px cyan;
+    animation: float infinite linear;
+}

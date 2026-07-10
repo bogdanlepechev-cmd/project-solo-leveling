@@ -1,0 +1,142 @@
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.characters-container {
+    padding: 35px 80px;
+    background: #0b0b0bb0;
+}
+
+.char-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    text-align: center;
+    transition: 0.4s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.char-card h3 {
+    font-size: 24px;
+}
+
+.char-card p {
+    font-size: 20px;
+    background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.char-card:hover {
+    transform: translateY(-20px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.char-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: 0.4s;
+}
+
+.char-card:hover img {
+    filter: grayscale(0%);
+}
+
+.char-rank {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.rank-s {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    color: #000000;
+}
+
+.ranked-s {
+    background: linear-gradient(135deg, #ffcc00, #ff9900);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rank-a {
+    background: linear-gradient(135deg, #fd1d1d, #fcb045);
+}
+
+.ranked-a {
+    background: linear-gradient(135deg, #fd1d1d, #fcb045);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rank-b {
+    background: linear-gradient(135deg, #4da6ff, #0055ff);
+}
+
+.ranked-b {
+    background: linear-gradient(135deg, #4da6ff, #0055ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rank-d {
+    background: linear-gradient(135deg, #ff6a00 0%, #8b4513 35%);
+}
+
+.ranked-d {
+    background: linear-gradient(135deg, #ff6a00 0%, #8b4513 35%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rank-c {
+    background: linear-gradient(135deg, #12a38b 0%, #57c785 47%);
+}
+
+.ranked-c {
+    background: linear-gradient(135deg, #12a38b 0%, #57c785 47%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.char-rank::after {
+    content: '★';
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.char-card:hover .rank-s {
+    box-shadow: 0 0 15px #ffcc00;
+}
+
+.char-card:hover .rank-a {
+    box-shadow: 0 0 15px #ff0055;
+}
+
+.char-card img {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.char-card:hover img {
+    transform: scale(1.05);
+}

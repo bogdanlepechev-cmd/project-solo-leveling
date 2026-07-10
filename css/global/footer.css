@@ -1,0 +1,127 @@
+.footer {
+    position: relative;
+    background: #05050516;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 217, 255, .15);
+}
+
+.footer-line {
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            #00d9ff,
+            transparent);
+    animation: lineMove 5s linear infinite;
+}
+
+.footer-content {
+    width: min(1300px, 90%);
+    margin: auto;
+    padding: 70px 0;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+}
+
+.footer-brand {
+    position: relative;
+}
+
+.footer-brand h2 {
+    color: #00d9ff;
+    font-size: 52px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    text-shadow: 0 0 12px #00d9ff;
+}
+
+.footer-brand p {
+    color: #999;
+    letter-spacing: 2px;
+}
+
+.brand-glow {
+    width: 220px;
+    height: 220px;
+    position: absolute;
+    left: -60px;
+    top: -60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00d9ff33, transparent 70%);
+    animation: pulse 4s infinite;
+    pointer-events: none;
+}
+
+.footer-column h3 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-column a {
+    color: #9d9d9d;
+    text-decoration: none;
+    margin: 9px 0;
+    transition: .3s;
+    position: relative;
+    padding-left: 18px;
+    font-size: 18px;
+}
+
+.footer-column a::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00d9ff;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: .3s;
+}
+
+.footer-column a:hover {
+    color: white;
+    transform: translateX(10px);
+}
+
+.footer-column a:hover::before {
+    box-shadow:
+        0 0 10px #00d9ff,
+        0 0 20px #00d9ff,
+        0 0 35px #00d9ff;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    padding: 22px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #777;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 2px;
+    color: #00ff88;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #00ff88;
+    box-shadow:
+        0 0 10px #00ff88,
+        0 0 20px #00ff88;
+    animation: online 1.8s infinite;
+}

@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #040914;
+    --bg-dark: #050505;
+    --panel: rgba(12, 22, 40, .65);
+    --panel2: rgba(20, 35, 60, .75);
+    --cyan: #00e5ff;
+    --blue: #2a8cff;
+    --neon-blue: #00d4ff;
+    --green: #00ff9d;
+    --red: #ff5555;
+    --text: #ffffff;
+    --sub: #8fb6d9;
+    --border: rgba(0, 229, 255, .25);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background:
+        linear-gradient(145deg,
+            rgba(15, 25, 45, .82),
+            rgba(5, 15, 30, .65));
+    color: var(--text);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -20;
+    background:
+        radial-gradient(circle at top, #173a73 0%, #071120 35%, #02040a 100%);
+}
+
+.gradient1 {
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    left: -250px;
+    top: -250px;
+    background:
+        radial-gradient(circle,
+            rgba(0, 255, 255, .18),
+            transparent 70%);
+    filter: blur(70px);
+}
+
+.gradient2 {
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    right: -250px;
+    bottom: -250px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle,
+            rgba(0, 100, 255, .15),
+            transparent 70%);
+    filter: blur(70px);
+}
+
+#stars {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -20;
+    background:
+        radial-gradient(circle at center,
+            #09182c 0%,
+            #050912 45%,
+            #010205 100%);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #08121f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: cyan;
+    border-radius: 10px;
+}
