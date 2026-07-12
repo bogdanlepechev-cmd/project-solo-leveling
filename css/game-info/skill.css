@@ -9,8 +9,7 @@
 }
 
 .skill-item:hover {
-    background: rgba(0, 255, 255, 0.05);
-    border: 1px solid var(--border);
+    background: rgba(0, 148, 148, 0.371);
 }
 
 .skill-info h3 {
