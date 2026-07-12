@@ -32,7 +32,7 @@
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: 0;
+    bottom: -4px;
     left: 50%;
     background-color: var(--neon-blue);
     box-shadow: 0 0 10px var(--neon-blue);
@@ -45,10 +45,16 @@
     width: 100%;
 }
 
+.nav-links a:hover::after,
+.navbar a:hover::after {
+    width: 100%;
+}
+
 .nav-links a span:hover,
 .nav-links a.active,
 .navbar a:hover,
 .navbar a.active {
+
     color: var(--neon-blue);
 }
 
