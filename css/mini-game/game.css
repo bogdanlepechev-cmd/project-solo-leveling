@@ -1,0 +1,208 @@
+.game-container {
+    position: relative;
+    text-align: center;
+    background: #0d0d1a;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.15);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+h1 {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    color: #00f2fe;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+    letter-spacing: 2px;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#score {
+    color: #00f2fe;
+}
+
+#highscore {
+    color: #fe019a;
+}
+
+.board-wrapper {
+    position: relative;
+    background: none;
+}
+
+#gameBoard {
+    width: 480px;
+    height: 480px;
+    background-color: #05050b;
+    border: 2px solid #331166;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 12px;
+    padding: 12px;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9);
+}
+
+.tile {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    font-weight: bold;
+    color: transparent;
+    transition: all 0.15s ease-in-out;
+}
+
+.tile[data-value="2"] {
+    color: #fff;
+    background: rgba(0, 242, 254, 0.1);
+    box-shadow: 0 0 5px rgba(0, 242, 254, 0.3);
+}
+
+.tile[data-value="4"] {
+    color: #fff;
+    background: rgba(0, 242, 254, 0.2);
+    box-shadow: 0 0 8px rgba(0, 242, 254, 0.4);
+}
+
+.tile[data-value="8"] {
+    color: #fff;
+    background: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+}
+
+.tile[data-value="16"] {
+    color: #fff;
+    background: rgba(0, 242, 254, 0.6);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+}
+
+.tile[data-value="32"] {
+    color: #fff;
+    background: rgba(142, 45, 226, 0.6);
+    box-shadow: 0 0 15px rgba(142, 45, 226, 0.6);
+}
+
+.tile[data-value="64"] {
+    color: #fff;
+    background: rgba(142, 45, 226, 0.8);
+    box-shadow: 0 0 20px rgba(142, 45, 226, 0.8);
+}
+
+.tile[data-value="128"] {
+    color: #fff;
+    background: rgba(254, 1, 154, 0.5);
+    box-shadow: 0 0 20px rgba(254, 1, 154, 0.5);
+    font-size: 1.8rem;
+}
+
+.tile[data-value="256"] {
+    color: #fff;
+    background: rgba(254, 1, 154, 0.7);
+    box-shadow: 0 0 25px rgba(254, 1, 154, 0.7);
+    font-size: 1.8rem;
+}
+
+.tile[data-value="512"] {
+    color: #fff;
+    background: rgba(254, 1, 154, 0.9);
+    box-shadow: 0 0 30px rgba(254, 1, 154, 0.9);
+    font-size: 1.8rem;
+}
+
+.tile[data-value="1024"] {
+    color: #fff;
+    background: rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+    font-size: 1.5rem;
+}
+
+.tile[data-value="2048"] {
+    color: #080810;
+    background: #ffd700;
+    box-shadow: 0 0 40px #ffd700;
+    font-size: 1.5rem;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.tile.new {
+    animation: pop 0.2s ease;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+#overlayTitle {
+    color: #00f2fe;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+}
+
+#overlayDesc {
+    margin-top: 10px;
+    color: #aaa;
+}
+
+.btn {
+    background: linear-gradient(45deg, #00f2fe, #4facfe);
+    color: #080810;
+    border: none;
+    padding: 12px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+    transition: transform 0.1s, box-shadow 0.2s;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.7);
+}
+
+.instructions {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #888;
+}
