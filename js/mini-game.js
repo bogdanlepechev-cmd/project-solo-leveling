@@ -1,196 +1,280 @@
-(function() {
-    const boardElement = document.getElementById('gameBoard');
-    const scoreVal = document.getElementById('score');
-    const highscoreVal = document.getElementById('highscore');
-    const overlay = document.getElementById('gameOverlay');
-    const overlayTitle = document.getElementById('overlayTitle');
-    const overlayDesc = document.getElementById('overlayDesc');
-    const actionBtn = document.getElementById('actionBtn');
+import { hunters } from '../json/characters.js';
 
-    let grid = [];
-    let score = 0;
-    let highscore = localStorage.getItem('neon2048_highscore') || 0;
-    let gameActive = false;
+const summonBtn = document.getElementById('summonBtn');
+const progressFill = document.getElementById('progressFill');
+const progressPercent = document.getElementById('progressPercent');
+const statusTitle = document.getElementById('statusTitle');
+const statusSubtitle = document.getElementById('statusSubtitle');
+const cardShirt = document.getElementById('cardShirt');
+const cardWrapper = document.getElementById('cardWrapper');
+const characterCard = document.getElementById('characterCard');
+const charImage = document.getElementById('charImage');
+const charRank = document.getElementById('charRank');
+const charName = document.getElementById('charName');
+const manaCountEl = document.getElementById('manaCount');
+const collectionSlots = document.getElementById('collectionSlots');
 
-    highscoreVal.innerText = highscore;
-    actionBtn.addEventListener('click', startGame);
-    const blockedKeys = ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
-    window.addEventListener('keydown', function(e) {
-        if (gameActive && blockedKeys.includes(e.code)) {
-            e.preventDefault();
-        }
-        if (!gameActive) return;
+const viewAllBtn = document.querySelector('.view-all');
+const collectionModal = document.getElementById('collectionModal');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const collectionGallery = document.getElementById('collectionGallery');
 
-        let moved = false;
-        switch(e.code) {
-            case 'ArrowUp': case 'KeyW': moved = moveUp(); break;
-            case 'ArrowDown': case 'KeyS': moved = moveDown(); break;
-            case 'ArrowLeft': case 'KeyA': moved = moveLeft(); break;
-            case 'ArrowRight': case 'KeyD': moved = moveRight(); break;
-        }
+const charModal = document.getElementById('char-modal');
+const closeCharModalBtn = document.getElementById('closeCharModalBtn');
 
-        if (moved) {
-            spawnTile();
-            renderBoard();
-            checkGameOver();
-        }
-    }, { passive: false });
-    boardElement.addEventListener('touchmove', function(e) {
-        if (gameActive) e.preventDefault();
-    }, { passive: false });
-    function startGame() {
-        overlay.classList.add('hidden');
-        gameActive = true;
-        score = 0;
-        scoreVal.innerText = score;
-        grid = [
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0],
-            [0, 0, 0, 0]
-        ];
+const navbar = document.querySelector('.navbar');
 
-        spawnTile();
-        spawnTile();
-        renderBoard();
+let mana = parseInt(localStorage.getItem('gacha_mana')) || 1250;
+let collection = JSON.parse(localStorage.getItem('gacha_collection')) || [];
+
+updateManaDisplay();
+renderCollection();
+
+summonBtn.addEventListener('click', startSummonProcess);
+
+function startSummonProcess() {
+    if (mana < 50) {
+        alert("Недостаточно маны! Кристаллы восстановлены Системой.");
+        mana = 500;
+        updateManaDisplay();
+        return;
     }
 
-    function spawnTile() {
-        let emptyCells = [];
-        for (let r = 0; r < 4; r++) {
-            for (let c = 0; c < 4; c++) {
-                if (grid[r][c] === 0) emptyCells.push({r, c});
-            }
-        }
-        if (emptyCells.length > 0) {
-            let rand = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-            grid[rand.r][rand.c] = Math.random() < 0.9 ? 2 : 4;
-            grid[rand.r][rand.c] = { val: grid[rand.r][rand.c], isNew: true };
-        }
+    const availableHunters = hunters.filter(h => !collection.some(item => item.name === h.name));
+    if (availableHunters.length === 0) {
+        alert("[СИСТЕМА] Все доступные солдаты тени уже призваны в вашу коллекцию!");
+        return;
     }
 
-    function renderBoard() {
-        boardElement.innerHTML = '';
-        for (let r = 0; r < 4; r++) {
-            for (let c = 0; c < 4; c++) {
-                let cellData = grid[r][c];
-                let val = typeof cellData === 'object' ? cellData.val : cellData;
-                let isNew = typeof cellData === 'object' ? cellData.isNew : false;
-                if (typeof cellData === 'object') grid[r][c] = val;
+    mana -= 50;
+    updateManaDisplay();
+    summonBtn.disabled = true;
+    cardWrapper.classList.remove('show');
+    cardShirt.style.opacity = '1';
+    cardShirt.style.transform = 'scale(1)';
 
-                let div = document.createElement('div');
-                div.className = 'tile';
-                if (val > 0) {
-                    div.setAttribute('data-value', val);
-                    div.innerText = val;
-                    if (isNew) div.classList.add('new');
-                }
-                boardElement.appendChild(div);
-            }
-        }
-    }
-    function slide(row) {
-        let arr = row.filter(val => val > 0);
-        let missing = 4 - arr.length;
-        let zeros = Array(missing).fill(0);
-        return arr.concat(zeros);
+    statusTitle.textContent = 'ОТКРЫТИЕ ВРАТ ПРИЗЫВА';
+    statusSubtitle.textContent = '[СИСТЕМА]РЕЗОНАНС С МАНОЙ...';
+
+    executeRouletteSummon(availableHunters);
+}
+
+function executeRouletteSummon(availableHunters) {
+    let rouletteContainer = document.getElementById('rouletteContainer');
+    if (!rouletteContainer) {
+        rouletteContainer = document.createElement('div');
+        rouletteContainer.id = 'rouletteContainer';
+        progressFill.parentElement.replaceWith(rouletteContainer);
     }
 
-    function combine(row) {
-        for (let i = 0; i < 3; i++) {
-            if (row[i] !== 0 && row[i] === row[i + 1]) {
-                row[i] *= 2;
-                row[i + 1] = 0;
-                score += row[i];
-                if (score > highscore) {
-                    highscore = score;
-                    highscoreVal.innerText = highscore;
-                    localStorage.setItem('neon2048_highscore', highscore);
-                }
-            }
+    rouletteContainer.innerHTML = '';
+    const track = document.createElement('div');
+    track.className = 'roulette-track';
+    rouletteContainer.appendChild(track);
+
+    const rolledHunter = rollHunter(availableHunters);
+    const totalCards = 30;
+    const targetIndex = 25;
+
+    for (let i = 0; i < totalCards; i++) {
+        let hunterSample;
+        if (i === targetIndex) {
+            hunterSample = rolledHunter;
+        } else {
+            hunterSample = hunters[Math.floor(Math.random() * hunters.length)];
         }
-        return row;
+
+        const item = document.createElement('div');
+        item.className = `roulette-item Rank-${hunterSample.rank}`;
+        item.innerHTML = `<img src="${hunterSample.img}" alt="${hunterSample.name}">`;
+        track.appendChild(item);
     }
 
-    function moveLeft() {
-        let moved = false;
-        for (let r = 0; r < 4; r++) {
-            let row = grid[r];
-            let newRow = slide(combine(slide(row)));
-            if (row.join(',') !== newRow.join(',')) {
-                moved = true;
-                grid[r] = newRow;
-            }
-        }
-        scoreVal.innerText = score;
-        return moved;
+    setTimeout(() => {
+        const cardWidth = 90;
+        const cardMargin = 10;
+        const step = cardWidth + cardMargin;
+
+        const containerWidth = rouletteContainer.offsetWidth;
+        const targetPosition = (targetIndex * step) + (step / 2) - (containerWidth / 2);
+
+        track.style.transform = `translateX(-${targetPosition}px)`;
+    }, 100);
+
+    setTimeout(() => {
+        statusTitle.textContent = 'ПРИЗЫВ ЗАВЕРШЕН';
+        statusSubtitle.textContent = `[СИСТЕМА] ВЫСОКИЙ СИГНАЛ МАНИФЕСТАЦИИ`;
+
+        charImage.src = rolledHunter.img;
+        charName.textContent = rolledHunter.name;
+        charRank.textContent = `${rolledHunter.rank}-RANK`;
+        characterCard.className = 'character-card';
+        characterCard.classList.add(`Rank-${rolledHunter.rank}`);
+
+        addToCollection(rolledHunter);
+
+        setTimeout(() => {
+            cardShirt.style.opacity = '0';
+            cardShirt.style.transform = 'scale(0) rotateY(180deg)';
+            setTimeout(() => {
+                cardWrapper.classList.add('show');
+                summonBtn.disabled = false;
+            }, 150);
+        }, 400);
+
+    }, 5100);
+}
+
+function rollHunter(availableHunters) {
+    const rand = Math.random() * 100;
+    let targetRank = "D";
+
+    if (rand < 3) targetRank = "S";
+    else if (rand < 15) targetRank = "A";
+    else if (rand < 45) targetRank = "B";
+    else if (rand < 80) targetRank = "C";
+    else targetRank = "D";
+
+    let candidates = availableHunters.filter(h => h.rank === targetRank);
+    if (candidates.length === 0) {
+        candidates = availableHunters;
     }
 
-    function moveRight() {
-        let moved = false;
-        for (let r = 0; r < 4; r++) {
-            let row = grid[r];
-            let reversedRow = row.slice().reverse();
-            let newRow = slide(combine(slide(reversedRow))).reverse();
-            if (row.join(',') !== newRow.join(',')) {
-                moved = true;
-                grid[r] = newRow;
-            }
-        }
-        scoreVal.innerText = score;
-        return moved;
+    const randomIndex = Math.floor(Math.random() * candidates.length);
+    return candidates[randomIndex];
+}
+
+function updateManaDisplay() {
+    manaCountEl.textContent = mana;
+    localStorage.setItem('gacha_mana', mana);
+}
+
+function addToCollection(hunter) {
+    if (!collection.some(item => item.name === hunter.name)) {
+        collection.unshift(hunter);
+        localStorage.setItem('gacha_collection', JSON.stringify(collection));
+        renderCollection();
+    }
+}
+
+function renderCollection() {
+    collectionSlots.innerHTML = '';
+    if (collection.length === 0) {
+        collectionSlots.innerHTML = '<div class="empty-slot-msg">Коллекция пуста</div>';
+        return;
     }
 
-    function moveUp() {
-        let moved = false;
-        for (let c = 0; c < 4; c++) {
-            let col = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
-            let newCol = slide(combine(slide(col)));
-            if (col.join(',') !== newCol.join(',')) {
-                moved = true;
-                for (let r = 0; r < 4; r++) grid[r][c] = newCol[r];
-            }
+    const previewList = collection.slice(0, 9);
+
+    previewList.forEach(hunter => {
+        const avatar = document.createElement('div');
+        avatar.className = 'collection-avatar';
+        avatar.title = `${hunter.name} (${hunter.rank}-Rank)`;
+        avatar.style.cursor = 'pointer';
+        avatar.innerHTML = `
+            <img src="${hunter.img}" alt="${hunter.name}">
+            <span class="avatar-rank-badge badge-${hunter.rank}">${hunter.rank}</span>
+        `;
+
+        avatar.addEventListener('click', () => {
+            openHunterDetails(hunter);
+        });
+
+        collectionSlots.appendChild(avatar);
+    });
+}
+
+function enableFocusMode() {
+    document.body.classList.add('no-scroll');
+    if (navbar) {
+        navbar.classList.add('navbar--hidden');
+    }
+}
+
+function disableFocusMode() {
+    const isGalleryOpen = collectionModal.classList.contains('active');
+    const isDetailsOpen = charModal.style.display === 'flex';
+
+    if (!isGalleryOpen && !isDetailsOpen) {
+        document.body.classList.remove('no-scroll');
+        if (navbar) {
+            navbar.classList.remove('navbar--hidden');
         }
-        scoreVal.innerText = score;
-        return moved;
+    }
+}
+
+viewAllBtn.addEventListener('click', () => {
+    renderFullGallery();
+    collectionModal.classList.add('active');
+    enableFocusMode();
+});
+
+closeModalBtn.addEventListener('click', () => {
+    collectionModal.classList.remove('active');
+    disableFocusMode();
+});
+
+collectionModal.addEventListener('click', (e) => {
+    if (e.target === collectionModal) {
+        collectionModal.classList.remove('active');
+        disableFocusMode();
+    }
+});
+
+function renderFullGallery() {
+    collectionGallery.innerHTML = '';
+    if (collection.length === 0) {
+        collectionGallery.innerHTML = `
+            <div class="no-hunters-msg">
+                [ОШИБКА] В РЕЕСТРЕ НЕТ ЗАПИСЕЙ.<br>Совершите хотя бы один призыв.
+            </div>`;
+        return;
     }
 
-    function moveDown() {
-        let moved = false;
-        for (let c = 0; c < 4; c++) {
-            let col = [grid[0][c], grid[1][c], grid[2][c], grid[3][c]];
-            let reversedCol = col.slice().reverse();
-            let newCol = slide(combine(slide(reversedCol))).reverse();
-            if (col.join(',') !== newCol.join(',')) {
-                moved = true;
-                for (let r = 0; r < 4; r++) grid[r][c] = newCol[r];
-            }
-        }
-        scoreVal.innerText = score;
-        return moved;
+    collection.forEach(hunter => {
+        const card = document.createElement('div');
+        card.className = `gallery-card Rank-${hunter.rank}`;
+        card.style.cursor = 'pointer';
+        card.innerHTML = `
+            <img src="${hunter.img}" alt="${hunter.name}">
+            <div class="gallery-info">
+                <span class="gallery-rank Rank-${hunter.rank}">${hunter.rank}-RANK</span>
+                <div class="gallery-name">${hunter.name}</div>
+            </div>
+        `;
+
+        card.addEventListener('click', () => {
+            openHunterDetails(hunter);
+        });
+
+        collectionGallery.appendChild(card);
+    });
+}
+
+function openHunterDetails(hunter) {
+    document.getElementById('modal-title').innerText = hunter.name;
+    document.getElementById('modal-img').src = hunter.img;
+    document.getElementById('modal-guild').innerText = hunter.guild || 'Нет данных';
+    document.getElementById('modal-age').innerText = hunter.age || 'Неизвестно';
+    document.getElementById('modal-status').innerText = hunter.status || 'Активен';
+    document.getElementById('modal-loc').innerText = hunter.loc || 'Неизвестно';
+    document.getElementById('modal-contact').innerText = hunter.contact || 'Нет связей';
+    document.getElementById('modal-bio').innerText = hunter.bio || 'Описание засекречено Системой.';
+
+    charModal.style.display = "flex";
+    enableFocusMode();
+}
+
+if (closeCharModalBtn) {
+    closeCharModalBtn.onclick = () => {
+        charModal.style.display = "none";
+        disableFocusMode();
+    };
+}
+
+window.addEventListener('click', (event) => {
+    if (event.target === charModal) {
+        charModal.style.display = "none";
+        disableFocusMode();
     }
-    function checkGameOver() {
-        for (let r = 0; r < 4; r++) {
-            for (let c = 0; c < 4; c++) {
-                if (grid[r][c] === 0) return;
-            }
-        }
-        for (let r = 0; r < 4; r++) {
-            for (let c = 0; c < 3; c++) {
-                if (grid[r][c] === grid[r][c + 1]) return;
-            }
-        }
-        for (let c = 0; c < 4; c++) {
-            for (let r = 0; r < 3; r++) {
-                if (grid[r][c] === grid[r + 1][c]) return;
-            }
-        }
-        gameActive = false;
-        overlayTitle.innerText = "ИГРА ОКОНЧЕНА";
-        overlayTitle.style.color = "#fe019a";
-        overlayTitle.style.textShadow = "0 0 10px rgba(254,1,154,0.5)";
-        overlayDesc.innerHTML = `Твой счет: <strong style="color:#00f2fe;">${score}</strong>`;
-        actionBtn.innerText = "ЗАНОВО";
-        overlay.classList.remove('hidden');
-    }
-})();
+});

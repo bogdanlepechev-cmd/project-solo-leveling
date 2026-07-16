@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="/css/global/footer.css">
     <link rel="stylesheet" href="/css/global/loader.css">
     <link rel="stylesheet" href="/css/global/navbar.css">
-    <link rel="stylesheet" href="/css/global/notifications.css">
     <link rel="stylesheet" href="/css/global/particles.css">
+    <link rel="stylesheet" href="/css/global/notifications.css">
     <link rel="stylesheet" href="/css/global/reset.css">
     <link rel="stylesheet" href="/css/animations.css">
     <link rel="stylesheet" href="/css/mini-game/game.css">
@@ -28,27 +28,66 @@
             <li><a href="/html/mini-game.html" class="active">МИНИ-ИГРА</a></li>
         </ul>
     </nav>
-    <div class="game-container">
-        <h1>NEON 2048</h1>
-        <div class="scoreboard">
-            <div>Счет: <span id="score">0</span></div>
-            <div>Рекорд: <span id="highscore">0</span></div>
-        </div>
-
-        <div class="board-wrapper">
-            <div id="gameBoard">
+    <div class="gacha-viewport">
+        <div class="system-window">
+            <div class="system-header">
+                <div class="header-line"></div>
+                <div class="header-title">System</div>
+                <div class="header-controls">
+                    <span class="control-dot"></span>
+                    <span class="control-dot"></span>
+                    <span class="control-dot"></span>
+                </div>
             </div>
-
-            <div id="gameOverlay" class="overlay">
-                <h2 id="overlayTitle">ГОТОВ?</h2>
-                <p id="overlayDesc">Соединяй одинаковые числа!</p>
-                <button id="actionBtn" class="btn">ИГРАТЬ</button>
+            <div class="system-body" id="gachaScreen">
+                <div class="summon-status-container">
+                    <h2 class="status-title" id="statusTitle">АКТИВАЦИЯ ВОРОТ ПРИЗЫВА</h2>
+                    <p class="status-subtitle" id="statusSubtitle">[СИСТЕМА] ГОТОВА К ПОИСКУ...</p>
+                    <div class="search-progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                <div class="gacha-center">
+                    <div class="card-shirt-wrapper" id="cardShirt">
+                        <div class="card-shirt-inner">
+                            <div class="shirt-pattern"></div>
+                            <div class="shirt-logo">SOLO LEVELING</div>
+                        </div>
+                    </div>
+                    <div class="character-card-wrapper" id="cardWrapper">
+                        <div class="character-card" id="characterCard">
+                            <div class="card-glow"></div>
+                            <div class="card-inner-border"></div>
+                            <img src="" alt="Character" id="charImage" class="char-image">
+                            <div class="char-info">
+                                <span class="char-rank" id="charRank">S-RANK</span>
+                                <h3 class="char-name" id="charName">Сон Джин Ву</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="system-footer-panel">
+                    <div class="collection-panel">
+                        <div class="collection-header">
+                            <span>ВАША КОЛЛЕКЦИЯ</span>
+                            <span class="view-all">VIEW ALL &gt;</span>
+                        </div>
+                        <div class="collection-slots" id="collectionSlots">
+                            <div class="empty-slot-msg">Коллекция пуста</div>
+                        </div>
+                    </div>
+                    <div class="action-panel">
+                        <div class="mana-counter">
+                            <p class="cost">СТОИМОСТЬ ПРИЗЫВА: 50 МАНЫ</p>
+                            КРИСТАЛЛЫ МАНЫ: <span id="manaCount">1250</span>
+                        </div>
+                        <button class="summon-btn" id="summonBtn">
+                            <span class="btn-glow"></span>
+                            ВОССТАНЬ 
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="instructions">
-            Управление: <b>Стрелки</b> или <b>WASD</b>.<br>
-            Собери плитку 2048!
         </div>
     </div>
     <footer class="footer hidden">
@@ -96,11 +135,45 @@
         <div class="loader-circle"></div>
         <span>INITIALIZING SYSTEM...</span>
     </div>
+    <div class="modal-overlay" id="collectionModal">
+        <div class="modal-window">
+            <div class="system-header">
+                <div class="header-line"></div>
+                <div class="header-title">[СИСТЕМА] РЕЕСТР ОХОТНИКОВ</div>
+                <div class="header-controls">
+                    <span class="close-modal" id="closeModalBtn">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="collection-gallery" id="collectionGallery">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="char-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeCharModalBtn">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div class="modal-layout">
+                <img id="modal-img" src="" alt="Hunter">
+                <div class="hunter-info">
+                    <div class="info-tag">ГИЛЬДИЯ: <span id="modal-guild"></span></div>
+                    <div class="info-tag">ВОЗРАСТ: <span id="modal-age"></span></div>
+                    <div class="info-tag">СТАТУС: <span id="modal-status"></span></div>
+                    <div class="extra-info">
+                        <p><strong>ЛОКАЦИЯ:</strong> <span id="modal-loc"></span></p>
+                        <p><strong>СВЯЗИ:</strong> <span id="modal-contact"></span></p>
+                    </div>
+                    <p id="modal-bio" class="bio-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script type="module" src="/js/main.js"></script>
-    <script type="module" src="/js/mini-game.js"></script>
-    <script src="/js/particles.js"></script>
     <script src="/js/loader.js"></script>
     <script src="/js/navbar.js"></script>
+    <script type="module" src="/js/mini-game.js"></script>
+    <script src="/js/particles.js"></script>
 </body>
 
 </html>
