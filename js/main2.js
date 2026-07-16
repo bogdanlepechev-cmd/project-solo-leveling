@@ -259,7 +259,6 @@ function selectShadow(fullUrl, clickedElement) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. База данных описаний
     const statData = {
         'Сила': {
             impact: 'Определяет физическую мощь и наносимый урон в ближнем бою.',
@@ -286,8 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
             details: ['Повышает сопротивление к эффектам контроля', 'Увеличивает точность применения магических навыков', 'Улучшает ауры и пассивные эффекты']
         }
     };
-
-    // 2. Ссылки на элементы
     const modal3 = document.getElementById('stat-modal');
     const modalTitle = document.getElementById('modal-title');
     const modalImpact = document.getElementById('modal-impact');
