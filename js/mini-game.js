@@ -1,5 +1,22 @@
 import { hunters } from '../json/characters.js';
 
+const bgMusic = new Audio('/assets/audio/dark-aria_.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 0.25;
+
+let musicStarted = false;
+function initAudioOnFirstInteraction() {
+    if (!musicStarted) {
+        bgMusic.play().then(() => {
+            musicStarted = true;
+        }).catch(err => {
+            console.log("Ожидание клика для воспроизведения музыки...");
+        });
+    }
+}
+document.addEventListener('click', initAudioOnFirstInteraction, { once: true });
+document.addEventListener('keydown', initAudioOnFirstInteraction, { once: true });
+
 const summonBtn = document.getElementById('summonBtn');
 const progressFill = document.getElementById('progressFill');
 const progressPercent = document.getElementById('progressPercent');
@@ -54,17 +71,24 @@ function startSummonProcess() {
     cardShirt.style.transform = 'scale(1)';
 
     statusTitle.textContent = 'ОТКРЫТИЕ ВРАТ ПРИЗЫВА';
-    statusSubtitle.textContent = '[СИСТЕМА]РЕЗОНАНС С МАНОЙ...';
+    statusSubtitle.textContent = '[СИСТЕМА] РЕЗОНАНС С МАНОЙ...';
 
     executeRouletteSummon(availableHunters);
 }
 
 function executeRouletteSummon(availableHunters) {
     let rouletteContainer = document.getElementById('rouletteContainer');
+
     if (!rouletteContainer) {
         rouletteContainer = document.createElement('div');
         rouletteContainer.id = 'rouletteContainer';
-        progressFill.parentElement.replaceWith(rouletteContainer);
+
+        if (progressFill && progressFill.parentElement) {
+            progressFill.parentElement.replaceWith(rouletteContainer);
+        } else {
+            const statusBox = document.querySelector('.status-box') || document.body;
+            statusBox.appendChild(rouletteContainer);
+        }
     }
 
     rouletteContainer.innerHTML = '';
@@ -145,7 +169,9 @@ function rollHunter(availableHunters) {
 }
 
 function updateManaDisplay() {
-    manaCountEl.textContent = mana;
+    if (manaCountEl) {
+        manaCountEl.textContent = mana;
+    }
     localStorage.setItem('gacha_mana', mana);
 }
 
@@ -158,6 +184,8 @@ function addToCollection(hunter) {
 }
 
 function renderCollection() {
+    if (!collectionSlots) return;
+
     collectionSlots.innerHTML = '';
     if (collection.length === 0) {
         collectionSlots.innerHTML = '<div class="empty-slot-msg">Коллекция пуста</div>';
@@ -192,8 +220,8 @@ function enableFocusMode() {
 }
 
 function disableFocusMode() {
-    const isGalleryOpen = collectionModal.classList.contains('active');
-    const isDetailsOpen = charModal.style.display === 'flex';
+    const isGalleryOpen = collectionModal && collectionModal.classList.contains('active');
+    const isDetailsOpen = charModal && charModal.style.display === 'flex';
 
     if (!isGalleryOpen && !isDetailsOpen) {
         document.body.classList.remove('no-scroll');
@@ -203,25 +231,33 @@ function disableFocusMode() {
     }
 }
 
-viewAllBtn.addEventListener('click', () => {
-    renderFullGallery();
-    collectionModal.classList.add('active');
-    enableFocusMode();
-});
+if (viewAllBtn) {
+    viewAllBtn.addEventListener('click', () => {
+        renderFullGallery();
+        collectionModal.classList.add('active');
+        enableFocusMode();
+    });
+}
 
-closeModalBtn.addEventListener('click', () => {
-    collectionModal.classList.remove('active');
-    disableFocusMode();
-});
-
-collectionModal.addEventListener('click', (e) => {
-    if (e.target === collectionModal) {
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', () => {
         collectionModal.classList.remove('active');
         disableFocusMode();
-    }
-});
+    });
+}
+
+if (collectionModal) {
+    collectionModal.addEventListener('click', (e) => {
+        if (e.target === collectionModal) {
+            collectionModal.classList.remove('active');
+            disableFocusMode();
+        }
+    });
+}
 
 function renderFullGallery() {
+    if (!collectionGallery) return;
+
     collectionGallery.innerHTML = '';
     if (collection.length === 0) {
         collectionGallery.innerHTML = `
@@ -266,10 +302,10 @@ function openHunterDetails(hunter) {
 }
 
 if (closeCharModalBtn) {
-    closeCharModalBtn.onclick = () => {
+    closeCharModalBtn.addEventListener('click', () => {
         charModal.style.display = "none";
         disableFocusMode();
-    };
+    });
 }
 
 window.addEventListener('click', (event) => {
@@ -278,3 +314,16 @@ window.addEventListener('click', (event) => {
         disableFocusMode();
     }
 });
+
+const musicBtn = document.getElementById('musicToggleBtn');
+if (musicBtn) {
+    musicBtn.addEventListener('click', () => {
+        if (bgMusic.paused) {
+            bgMusic.play();
+            musicBtn.innerText = "🎵";
+        } else {
+            bgMusic.pause();
+            musicBtn.innerText = "🔇";
+        }
+    });
+}

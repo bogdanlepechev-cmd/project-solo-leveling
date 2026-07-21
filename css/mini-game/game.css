@@ -703,3 +703,27 @@ body.no-scroll {
 .roulette-item.Rank-D {
     border-color: #ff6a00;
 }
+
+.music-toggle-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 162, 255, 0.4);
+    color: #00a2ff;
+    padding: 2px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.music-toggle-btn:hover {
+    background: rgba(0, 162, 255, 0.2);
+    box-shadow: 0 0 8px rgba(0, 162, 255, 0.6);
+}
+
+.music-toggle-btn.muted {
+    color: #666;
+    border-color: #444;
+    opacity: 0.6;
+}

@@ -201,14 +201,20 @@ setInterval(() => {
 }, 1000);
 
 const shadowList = [
-    { id: 1, thumb: '/assets/shadow_list/chibi/t1.png', full: '/assets/shadow_list/full-body/f1.png' }, // Igris (Рыцарь)
-    { id: 2, thumb: '/assets/shadow_list/chibi/t2.png', full: '/assets/shadow_list/full-body/f2.png' }, // Beru (Муравей)
-    { id: 3, thumb: '/assets/shadow_list/chibi/t3.png', full: '/assets/shadow_list/full-body/f3.png' }, // Tank (Медведь)
-    { id: 4, thumb: '/assets/shadow_list/chibi/t4.png', full: '/assets/shadow_list/full-body/f4.png' }, // Kaisel (Дракон)
-    { id: 5, thumb: '/assets/shadow_list/chibi/t5.png', full: '/assets/shadow_list/full-body/f5.png' }, // Tusk (Колдун)
-    { id: 6, thumb: '/assets/shadow_list/chibi/t6.png', full: '/assets/shadow_list/full-body/f6.png' }, // Iron
-    { id: 7, thumb: '/assets/shadow_list/chibi/t7.png', full: '/assets/shadow_list/full-body/f7.png' }, // Bellion
-    { id: 8, thumb: '/assets/shadow_list/chibi/t8.png', full: '/assets/shadow_list/full-body/f8.png' }, // Ashborn
+    { id: 1, thumb: '/assets/shadow_list/chibi/t1.png', full: '/assets/shadow_list/full-body/f1.webp' }, // Igris (Рыцарь)
+    { id: 2, thumb: '/assets/shadow_list/chibi/t2.png', full: '/assets/shadow_list/full-body/f2.webp' }, // Beru (Муравей)
+    { id: 3, thumb: '/assets/shadow_list/chibi/t3.png', full: '/assets/shadow_list/full-body/f3.webp' }, // Tank (Медведь)
+    { id: 4, thumb: '/assets/shadow_list/chibi/t4.png', full: '/assets/shadow_list/full-body/f4.webp' }, // Kaisel (Дракон)
+    { id: 5, thumb: '/assets/shadow_list/chibi/t5.png', full: '/assets/shadow_list/full-body/f5.webp' }, // Tusk (Колдун)
+    { id: 6, thumb: '/assets/shadow_list/chibi/t6.png', full: '/assets/shadow_list/full-body/f6.webp' }, // Iron
+    { id: 7, thumb: '/assets/shadow_list/chibi/t7.png', full: '/assets/shadow_list/full-body/f7.webp' }, // Bellion
+    { id: 8, thumb: '/assets/shadow_list/chibi/t8.png', full: '/assets/shadow_list/full-body/f8.webp' }, // Ashborn
+    { id: 9, thumb: '/assets/shadow_list/chibi/t9.png', full: '/assets/shadow_list/full-body/f9.webp' }, // Greed
+    { id: 10, thumb: '/assets/shadow_list/chibi/t10.png', full: '/assets/shadow_list/full-body/f10.webp' }, // JIMA
+    { id: 11, thumb: '/assets/shadow_list/chibi/t11.png', full: '/assets/shadow_list/full-body/f11.webp' }, // KARGALGAN
+    { id: 12, thumb: '/assets/shadow_list/chibi/t12.png', full: '/assets/shadow_list/full-body/f12.webp' }, // KAMISH
+    { id: 13, thumb: '/assets/shadow_list/chibi/t13.png', full: '/assets/shadow_list/full-body/f13.webp' }, // ANT QUEEN
+    { id: 14, thumb: '/assets/shadow_list/chibi/t14.png', full: '/assets/shadow_list/full-body/f14.webp' }, // SHADOW GIANT
 ];
 
 const grid = document.getElementById('shadow-grid');
@@ -216,14 +222,18 @@ const bigImg = document.getElementById('big-chibi-img');
 
 function selectShadow(fullUrl, clickedElement) {
     if (!bigImg) return;
-    bigImg.src = fullUrl;
-
-    document.querySelectorAll('.shadow-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    if (clickedElement) {
-        clickedElement.classList.add('active');
-    }
+    if (clickedElement && clickedElement.classList.contains('active')) return;
+    bigImg.classList.add('fade-out');
+    setTimeout(() => {
+        bigImg.src = fullUrl;
+        document.querySelectorAll('.shadow-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        if (clickedElement) {
+            clickedElement.classList.add('active');
+        }
+        bigImg.classList.remove('fade-out');
+    }, 180);
 }
 
 function initShadows() {
@@ -243,19 +253,15 @@ function initShadows() {
         div.appendChild(img);
         div.onclick = () => selectShadow(shadow.full, div);
         grid.appendChild(div);
-        if (index === 0) selectShadow(shadow.full, div);
+
+        if (index === 0) {
+            bigImg.src = shadow.full;
+            div.classList.add('active');
+        }
     });
 }
+
 document.addEventListener('DOMContentLoaded', initShadows);
-
-function selectShadow(fullUrl, clickedElement) {
-    bigImg.src = fullUrl;
-
-    document.querySelectorAll('.shadow-item').forEach(item => {
-        item.classList.remove('active');
-    });
-    clickedElement.classList.add('active');
-}
 
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -1,18 +1,16 @@
-.shadow-grid div {
-    width: 100px;
-    height: 120px;
-    border: 1px solid rgba(0, 255, 255, .3);
-    border-radius: 10px;
+.shadow-wrapper {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
 }
 
 .shadow-center {
-    width: 100%;
-    height: 420px;
+    flex: 1;
+    height: 670px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    margin-bottom: 20px;
     overflow: hidden;
 }
 
@@ -25,16 +23,24 @@
 
 .shadow-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr;
     gap: 8px;
+    max-height: 670px;
+    overflow-y: auto;
+    padding-right: 6px;
+    padding-left: 4px;
+    padding-bottom: 6px;
 }
 
 .shadow-item {
+    width: 90px;
+    height: 90px;
     border: 2px solid transparent;
     border-radius: 6px;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.2s ease;
+    box-sizing: border-box;
 }
 
 .shadow-item img {
@@ -45,10 +51,24 @@
 
 .shadow-item:hover {
     border-color: #555;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .shadow-item.active {
     border-color: #ffd700;
     box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+#big-chibi-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+#big-chibi-img.fade-out {
+    opacity: 0;
+    transform: scale(0.96);
 }
